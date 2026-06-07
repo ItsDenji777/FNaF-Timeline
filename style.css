@@ -6,6 +6,10 @@
     --card-bg: #161619;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 body {
     margin: 0;
     padding: 0;

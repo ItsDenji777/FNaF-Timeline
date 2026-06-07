@@ -58,7 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Get mapping data
             const eraId = this.getAttribute('data-id');
             const contentBlock = this.closest('.content');
-            
+            document.body.classList.add("no-scroll");   // open card
+
             const accentColor = contentBlock.closest('.timeline-item').style.getPropertyValue('--accent-color');
             const imgSrc = contentBlock.querySelector('img').src;
             const titleText = contentBlock.querySelector('h3').innerText;
@@ -83,17 +84,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close Modal Events
     closeModalBtn.addEventListener('click', () => {
         modalOverlay.classList.remove('active');
+        document.body.classList.remove("no-scroll"); // close card
     });
 
     modalOverlay.addEventListener('click', (e) => {
         if (e.target === modalOverlay) {
             modalOverlay.classList.remove('active');
         }
+        document.body.classList.remove("no-scroll"); // close card
     });
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
             modalOverlay.classList.remove('active');
+            document.body.classList.remove("no-scroll"); // close card
         }
+    });
+
+    document.querySelectorAll('.timeline-item').forEach((el, i) => {
+        el.classList.add(i % 2 === 0 ? 'left' : 'right');
     });
 });
